@@ -4,7 +4,16 @@
   </header>
   <div class="layout__content-container">
     <aside class="layout__sidebar">
-      asdasd
+      @for (sidebarOption of sidebarOptions; track $index) {
+      <a
+        class="layout__sidebar-options"
+        [routerLink]="sidebarOption.route"
+        routerLinkActive="active"
+      >
+        <i [attr.class]="sidebarOption.icon"></i>
+        <span>{{ sidebarOption.title }}</span>
+      </a>
+      }
     </aside>
     <section class="layout__content">
       <ng-content />

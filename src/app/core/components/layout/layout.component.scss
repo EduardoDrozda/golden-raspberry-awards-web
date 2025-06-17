@@ -33,8 +33,36 @@
 
   &__sidebar {
     max-width: 300px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
     background-color: var(--sys-color-gray-300);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    &-options {
+      width: 100%;
+      padding: var(--sys-size-medium);
+      text-decoration: none;
+
+      &:visited {
+        color: inherit;
+      }
+
+      span {
+        margin-left: var(--sys-size-small);
+      }
+
+      &:hover {
+        background-color: var(--sys-color-gray-400);
+      }
+
+      &.active {
+        background-color: var(--sys-color-gray-500);
+        color: var(--sys-color-gray-900);
+        font-weight: 500;
+      }
+    }
   }
 }
