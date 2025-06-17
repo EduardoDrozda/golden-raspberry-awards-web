@@ -1,1 +1,12 @@
-<p>dashboard-years-multiple works!</p>
+<div class="card">
+  <span class="card__title">List years with multiple winners</span>
+  <div class="card__content-container">
+    <app-table
+      [columns]="[
+        { key: 'year', label: 'Year' },
+        { key: 'winnerCount', label: 'Winners Count' }
+      ]"
+      [data]="winnersByYear()?.years!"
+    />
+  </div>
+</div>
