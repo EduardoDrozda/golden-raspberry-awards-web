@@ -1,9 +1,10 @@
 import { Component, input } from '@angular/core';
 import { StudioWithWinnersModel } from '@features/dashboard/models';
+import { TableComponent } from '@shared/components';
 
 @Component({
   selector: 'app-dashboard-top-studios-list',
-  imports: [],
+  imports: [TableComponent],
   templateUrl: './dashboard-top-studios.component.html',
   styleUrl: './dashboard-top-studios.component.scss'
 })

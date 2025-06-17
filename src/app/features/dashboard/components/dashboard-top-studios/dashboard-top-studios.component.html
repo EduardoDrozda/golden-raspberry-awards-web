@@ -1,1 +1,12 @@
-<p>dashboard-top-studios works!</p>
+<div class="card">
+  <span class="card__title">List years with multiple winners</span>
+  <div class="card__content-container">
+    <app-table
+      [columns]="[
+        { key: 'name', label: 'Name' },
+        { key: 'winCount', label: 'Win Count' }
+      ]"
+      [data]="topStudios()?.studios!"
+    />
+  </div>
+</div>
