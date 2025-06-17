@@ -1,0 +1,28 @@
+<table class="table">
+  <thead>
+    <tr>
+      @for (column of columns(); track $index) {
+        <th>{{ column.label }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @if(isLoading()) {
+      <tr>
+        <td [attr.colspan]="columns().length">Loading...</td>
+      </tr>
+    } @else if (data()?.length) {
+      @for (row of data(); track $index) {
+        <tr>
+          @for (column of columns(); track $index) {
+          <td>{{ row[column.key] }}</td>
+          }
+        </tr>
+      }
+  } @else {
+      <tr>
+        <td [attr.colspan]="columns().length">No data available.</td>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -1,1 +1,23 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+  <app-dashboard-years-multiple-list
+    [winnersByYear]="winnersByYear$ | async"
+    [isLoading]="
+      loadingService.isLoading(projectionParamEnum.YEARS_WITH_MULTIPLE_WINNERS)
+    "
+  />
+  <app-dashboard-top-studios-list
+    [topStudios]="topStudios$ | async"
+    [isLoading]="
+      loadingService.isLoading(projectionParamEnum.STUDIOS_WITH_WIN_COUNTS)
+    "
+  />
+  <app-dashboard-producers-intervals-list
+    [maxMinWinIntervalForProducers]="maxMinWinIntervalForProducers$ | async"
+    [isLoading]="
+      loadingService.isLoading(
+        projectionParamEnum.MAX_MIX_WIN_INTERVAL_FOR_PRODUCERS
+      )
+    "
+  />
+  <app-dashboard-winner-by-year-list />
+</div>

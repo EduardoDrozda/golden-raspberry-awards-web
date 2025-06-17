@@ -1,0 +1,13 @@
+.dashboard-producers__tables-container {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+
+    &:last-of-type {
+      margin-top: 15px;
+    }
+  }
+}

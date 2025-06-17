@@ -1,9 +1,12 @@
 .card {
   padding: 15px;
+  background-color: var(--sys-color-white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 
   &__title {
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: var(--sys-size-medium);
+    font-weight: 600;
   }
 
   &__loader-container {

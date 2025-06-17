@@ -1,0 +1,13 @@
+import { Component, input } from '@angular/core';
+import { StudioWithWinnersModel } from '@features/dashboard/models';
+
+@Component({
+  selector: 'app-dashboard-top-studios-list',
+  imports: [],
+  templateUrl: './dashboard-top-studios.component.html',
+  styleUrl: './dashboard-top-studios.component.scss'
+})
+export class DashboardTopStudiosComponent {
+  topStudios = input.required<StudioWithWinnersModel | null>();
+  isLoading = input<boolean>(false);
+}

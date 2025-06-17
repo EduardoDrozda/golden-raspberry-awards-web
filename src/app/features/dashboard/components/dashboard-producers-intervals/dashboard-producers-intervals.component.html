@@ -1,0 +1,31 @@
+<div class="card">
+  <span class="card__title"
+    >Producers with longest and shortest interval between wins</span
+  >
+  <div class="card__content-container">
+    <div class="dashboard-producers__tables-container">
+
+      <span>Maximum</span>
+      <app-table
+        [columns]="[
+          { key: 'producer', label: 'Producer' },
+          { key: 'interval', label: 'Interval' },
+          { key: 'previousWin', label: 'Previous Win' },
+          { key: 'followingWin', label: 'Following Win' }
+        ]"
+        [data]="maxMinWinIntervalForProducers()?.max!"
+      />
+
+      <span>Minimum</span>
+      <app-table
+        [columns]="[
+          { key: 'producer', label: 'Producer' },
+          { key: 'interval', label: 'Interval' },
+          { key: 'previousWin', label: 'Previous Win' },
+          { key: 'followingWin', label: 'Following Win' }
+        ]"
+        [data]="maxMinWinIntervalForProducers()?.min!"
+      />
+    </div>
+  </div>
+</div>
