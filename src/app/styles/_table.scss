@@ -1,19 +1,31 @@
 .table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   font-size: 14px;
   color: var(--sys-color-gray-800);
   border: 1px solid var(--sys-color-gray-300);
 
+  thead,
+  tbody {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
   thead {
     background-color: var(--sys-color-gray-200);
 
     th {
-      text-align: left;
+      text-align: center;
       padding: 12px;
       font-weight: 600;
       color: var(--sys-color-gray-900);
       border: 1px solid var(--sys-color-gray-300);
+    }
+
+    .table__field {
+      margin-top: 15px;
     }
   }
 

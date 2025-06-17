@@ -1,1 +1,13 @@
-<p>movies-list works!</p>
+<div class="movies-list">
+  <div class="card">
+    <span class="card__title">List movies</span>
+    <div class="card__content-container">
+      <app-table
+        [columns]="columns"
+        [data]="movies?.content"
+        [isLoading]="loadingService.isLoading(moviesListLoading)"
+        (fieldSearchEmitter)="fetchMovies($event)"
+      />
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MovieModel } from '@features/dashboard/models';
+import { MovieModel } from '@core/models';
+
 import { TableComponent } from '@shared/components';
 
 @Component({

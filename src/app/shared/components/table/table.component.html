@@ -2,7 +2,26 @@
   <thead>
     <tr>
       @for (column of columns(); track $index) {
-        <th>{{ column.label }}</th>
+        <th>
+          {{ column.label }}
+          @if (column.filterable) {
+            <input
+              class="basic__input table__field"
+              type="text"
+              placeholder="Filter by {{ column.label }}"
+              (change)="onFilter({ key: column.key, value: $event })"
+            />
+          } @else if(column.selectable) {
+            <select
+              class="basic__select table__field"
+              (change)="onFilter({ key: column.key, value: $event })"
+              >
+              @for (option of column.options; track $index) {
+                <option [value]="option.value">{{ option.label }}</option>
+              }
+            </select>
+          }
+        </th>
       }
     </tr>
   </thead>
@@ -17,12 +36,12 @@
       @for (row of data(); track $index) {
         <tr>
           @for (column of columns(); track $index) {
-          <td>{{ row[column.key] }}</td>
+          <td>{{ row[column.key] | format }}</td>
           }
         </tr>
       }
   } @else {
-      <tr>
+      <tr class="table__no-data">
         <td [attr.colspan]="columns().length">No data available.</td>
       </tr>
     }

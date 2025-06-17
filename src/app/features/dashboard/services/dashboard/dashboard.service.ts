@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpService } from '@core/services/http';
 import { ProjectionParamEnum } from '@features/dashboard/enums';
 
-export type DashboardDataParams = {
+export type DashboardSearchParams = {
   projection?: ProjectionParamEnum;
   year?: number;
   winner?: boolean;
@@ -16,7 +16,7 @@ export class DashboardService {
 
   private readonly httpService = inject(HttpService);
 
-  getDataByParams<T>(params: DashboardDataParams) {
+  getDataByParams<T>(params: DashboardSearchParams) {
     return this.httpService.get<T>(this.baseUrl, params as Record<string, string | number | boolean>);
   }
 }

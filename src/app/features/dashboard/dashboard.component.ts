@@ -2,10 +2,17 @@ import { Component, inject } from '@angular/core';
 import { DashboardService } from './services/dashboard';
 import { LoadingService } from '@core/services/loading';
 import { finalize, map, Observable } from 'rxjs';
-import { MovieModel, ProducerMaxWinIntervalModel, StudioWithWinnersModel, WinnersByYearModel } from './models';
+import { ProducerMaxWinIntervalModel, StudioWithWinnersModel, WinnersByYearModel } from './models';
 import { ProjectionParamEnum } from './enums';
-import { DashboardProducersIntervalsComponent, DashboardTopStudiosComponent, DashboardWinnerByYearComponent, DashboardYearsMultipleComponent } from './components';
+import {
+  DashboardProducersIntervalsComponent,
+  DashboardTopStudiosComponent,
+  DashboardWinnerByYearComponent,
+  DashboardYearsMultipleComponent
+} from './components';
+
 import { AsyncPipe } from '@angular/common';
+import { MovieModel } from '@core/models';
 
 @Component({
   selector: 'app-dashboard',
