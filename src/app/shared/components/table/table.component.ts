@@ -8,7 +8,7 @@ import { TableColumn } from './models';
   styleUrl: './table.component.scss'
 })
 export class TableComponent<T = any> {
-  data = input<T[]>([]);
+  data = input<T[]>();
 
   columns = input<TableColumn<T>[]>([]);
   isLoading = input<boolean | undefined>(false);

@@ -32,7 +32,6 @@ export class DashboardWinnerByYearComponent {
     const value = this.formGroup.value;
 
     if (this.formGroup.valid) {
-      console.log('Year submitted:', value.year);
       this.yearEmitter.emit(value.year);
     }
   }
