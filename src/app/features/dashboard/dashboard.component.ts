@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { DashboardService } from './services/dashboard';
 import { LoadingService } from '@core/services/loading';
 import { finalize, map, Observable } from 'rxjs';
-import { ProducerMaxWinIntervalModel, StudioWithWinnersModel, WinnersByYearModel } from './models';
+import { MovieModel, ProducerMaxWinIntervalModel, StudioWithWinnersModel, WinnersByYearModel } from './models';
 import { ProjectionParamEnum } from './enums';
 import { DashboardProducersIntervalsComponent, DashboardTopStudiosComponent, DashboardWinnerByYearComponent, DashboardYearsMultipleComponent } from './components';
 import { AsyncPipe } from '@angular/common';
@@ -27,7 +27,12 @@ export class DashboardComponent {
   topStudios$!: Observable<StudioWithWinnersModel>;
   maxMinWinIntervalForProducers$!: Observable<ProducerMaxWinIntervalModel>;
 
-  projectionParamEnum = ProjectionParamEnum;
+  projectionYearsWithMultipleWinners = ProjectionParamEnum.YEARS_WITH_MULTIPLE_WINNERS;
+  projectionStudiosWithWinCounts = ProjectionParamEnum.STUDIOS_WITH_WIN_COUNTS;
+  projectionMaxMinWinIntervalForProducers = ProjectionParamEnum.MAX_MIX_WIN_INTERVAL_FOR_PRODUCERS;
+  winnerByYearLoader = 'winnerByYear';
+
+  movies$!: Observable<MovieModel[]>;
 
   ngOnInit(): void {
     this.fetchListYearsWithMultipleWinners();
@@ -36,23 +41,23 @@ export class DashboardComponent {
   }
 
   private fetchListYearsWithMultipleWinners() {
-    this.loadingService.start(this.projectionParamEnum.YEARS_WITH_MULTIPLE_WINNERS);
+    this.loadingService.start(this.projectionYearsWithMultipleWinners);
 
     this.winnersByYear$ = this
       .dashboardService
-      .getDataByParams<WinnersByYearModel>({ projection: this.projectionParamEnum.YEARS_WITH_MULTIPLE_WINNERS })
-      .pipe(finalize(() => this.loadingService.stop(this.projectionParamEnum.YEARS_WITH_MULTIPLE_WINNERS)));
+      .getDataByParams<WinnersByYearModel>({ projection: this.projectionYearsWithMultipleWinners })
+      .pipe(finalize(() => this.loadingService.stop(this.projectionYearsWithMultipleWinners)));
 
   }
 
   private fetchTopStudiosWithWiners() {
-    this.loadingService.start(this.projectionParamEnum.STUDIOS_WITH_WIN_COUNTS);
+    this.loadingService.start(this.projectionStudiosWithWinCounts);
     this.topStudios$ = this
       .dashboardService
-      .getDataByParams<StudioWithWinnersModel>({ projection: this.projectionParamEnum.STUDIOS_WITH_WIN_COUNTS })
+      .getDataByParams<StudioWithWinnersModel>({ projection: this.projectionStudiosWithWinCounts })
       .pipe(
         map(data => (this.getTopThreeStudios(data))),
-        finalize(() => this.loadingService.stop(this.projectionParamEnum.STUDIOS_WITH_WIN_COUNTS),
+        finalize(() => this.loadingService.stop(this.projectionStudiosWithWinCounts),
         ));
   }
 
@@ -66,16 +71,18 @@ export class DashboardComponent {
   }
 
   private fetchMaxMinWinIntervalForProducers() {
-    this.loadingService.start(this.projectionParamEnum.MAX_MIX_WIN_INTERVAL_FOR_PRODUCERS);
+    this.loadingService.start(this.projectionMaxMinWinIntervalForProducers);
     this.maxMinWinIntervalForProducers$ = this
       .dashboardService
-      .getDataByParams<ProducerMaxWinIntervalModel>({ projection: this.projectionParamEnum.MAX_MIX_WIN_INTERVAL_FOR_PRODUCERS })
-      .pipe(finalize(() => this.loadingService.stop(this.projectionParamEnum.MAX_MIX_WIN_INTERVAL_FOR_PRODUCERS)));
+      .getDataByParams<ProducerMaxWinIntervalModel>({ projection: this.projectionMaxMinWinIntervalForProducers })
+      .pipe(finalize(() => this.loadingService.stop(this.projectionMaxMinWinIntervalForProducers)));
   }
 
-  private fetchWinnerByYear(year: number, winner: boolean) {
-    this.dashboardService.getDataByParams({ projection: ProjectionParamEnum.YEARS_WITH_MULTIPLE_WINNERS, year, winner }).subscribe({
-      next: (data) => console.log(`Winner by year ${year} (${winner ? 'yes' : 'no'}):`, data),
-    });
+  fetchWinnerByYear(year: number) {
+    this.loadingService.start(this.winnerByYearLoader);
+    this.movies$ = this
+      .dashboardService
+      .getDataByParams<MovieModel[]>({ year, winner: true })
+      .pipe(finalize(() => this.loadingService.stop(this.winnerByYearLoader)));
   }
 }

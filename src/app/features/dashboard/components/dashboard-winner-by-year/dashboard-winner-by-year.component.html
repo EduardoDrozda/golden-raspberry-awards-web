@@ -1,1 +1,38 @@
-<p>dashboard-winner-by-year works!</p>
+<div class="card">
+  <span class="card__title">List movie winners by year</span>
+
+  <form
+    class="dashboard-winner__form"
+    [formGroup]="formGroup"
+  >
+    <div class="dashboard-winner__form-filter-container">
+      <input
+        id="search-year"
+        class="basic__input"
+        formControlName="year"
+        type="number"
+        placeholder="Search by year"
+        (keydown.enter)="submitSeach()"
+      />
+      <button
+        class="button-icon primary"
+        type="button"
+        [disabled]="formGroup.invalid"
+        (click)="submitSeach()"
+      >
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </form>
+
+  <div class="dashboard-winner__table-container">
+    <app-table
+      [columns]="[
+        { key: 'id', label: 'Id' },
+        { key: 'title', label: 'Title' },
+        { key: 'year', label: 'Year' }
+      ]"
+      [data]="movies()!"
+    />
+  </div>
+</div>

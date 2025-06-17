@@ -2,22 +2,22 @@
   <app-dashboard-years-multiple-list
     [winnersByYear]="winnersByYear$ | async"
     [isLoading]="
-      loadingService.isLoading(projectionParamEnum.YEARS_WITH_MULTIPLE_WINNERS)
+      loadingService.isLoading(projectionMaxMinWinIntervalForProducers)
     "
   />
   <app-dashboard-top-studios-list
     [topStudios]="topStudios$ | async"
-    [isLoading]="
-      loadingService.isLoading(projectionParamEnum.STUDIOS_WITH_WIN_COUNTS)
-    "
+    [isLoading]="loadingService.isLoading(projectionStudiosWithWinCounts)"
   />
   <app-dashboard-producers-intervals-list
     [maxMinWinIntervalForProducers]="maxMinWinIntervalForProducers$ | async"
     [isLoading]="
-      loadingService.isLoading(
-        projectionParamEnum.MAX_MIX_WIN_INTERVAL_FOR_PRODUCERS
-      )
+      loadingService.isLoading(projectionMaxMinWinIntervalForProducers)
     "
   />
-  <app-dashboard-winner-by-year-list />
+  <app-dashboard-winner-by-year-list
+    [movies]="movies$ | async"
+    [isLoading]="loadingService.isLoading(winnerByYearLoader)"
+    (yearEmitter)="fetchWinnerByYear($event)"
+  />
 </div>
