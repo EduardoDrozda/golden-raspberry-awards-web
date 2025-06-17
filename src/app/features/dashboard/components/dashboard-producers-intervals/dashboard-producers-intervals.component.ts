@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ProducerMaxWinIntervalModel } from '@features/dashboard/models';
 import { TableComponent } from '@shared/components';
 
@@ -6,7 +6,8 @@ import { TableComponent } from '@shared/components';
   selector: 'app-dashboard-producers-intervals-list',
   imports: [TableComponent],
   templateUrl: './dashboard-producers-intervals.component.html',
-  styleUrl: './dashboard-producers-intervals.component.scss'
+  styleUrl: './dashboard-producers-intervals.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardProducersIntervalsComponent {
   maxMinWinIntervalForProducers = input.required<ProducerMaxWinIntervalModel | null>();

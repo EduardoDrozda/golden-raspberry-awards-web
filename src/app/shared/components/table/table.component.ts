@@ -11,5 +11,5 @@ export class TableComponent<T = any> {
   data = input<T[]>([]);
 
   columns = input<TableColumn<T>[]>([]);
-  isLoading = input<boolean>(false);
+  isLoading = input<boolean | undefined>(false);
 }

@@ -4,7 +4,6 @@
   >
   <div class="card__content-container">
     <div class="dashboard-producers__tables-container">
-
       <span>Maximum</span>
       <app-table
         [columns]="[
@@ -14,6 +13,7 @@
           { key: 'followingWin', label: 'Following Win' }
         ]"
         [data]="maxMinWinIntervalForProducers()?.max!"
+        [isLoading]="isLoading()"
       />
 
       <span>Minimum</span>
@@ -25,6 +25,7 @@
           { key: 'followingWin', label: 'Following Win' }
         ]"
         [data]="maxMinWinIntervalForProducers()?.min!"
+        [isLoading]="isLoading()"
       />
     </div>
   </div>

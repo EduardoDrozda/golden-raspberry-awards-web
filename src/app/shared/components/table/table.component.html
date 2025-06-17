@@ -9,7 +9,9 @@
   <tbody>
     @if(isLoading()) {
       <tr>
-        <td [attr.colspan]="columns().length">Loading...</td>
+        <td [attr.colspan]="columns().length">
+          <div class="loader"></div>
+        </td>
       </tr>
     } @else if (data()?.length) {
       @for (row of data(); track $index) {

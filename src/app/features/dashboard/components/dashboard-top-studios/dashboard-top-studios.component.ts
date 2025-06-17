@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { StudioWithWinnersModel } from '@features/dashboard/models';
 import { TableComponent } from '@shared/components';
 
@@ -6,7 +6,7 @@ import { TableComponent } from '@shared/components';
   selector: 'app-dashboard-top-studios-list',
   imports: [TableComponent],
   templateUrl: './dashboard-top-studios.component.html',
-  styleUrl: './dashboard-top-studios.component.scss'
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardTopStudiosComponent {
   topStudios = input.required<StudioWithWinnersModel | null>();
