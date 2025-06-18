@@ -12,7 +12,7 @@ import {
 import { MovieModel } from '@core/models';
 import { HttpService } from '@core/services/http';
 
-fdescribe('DashboardComponent', () => {
+describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
   let dashboardServiceSpy: jasmine.SpyObj<DashboardService>;
