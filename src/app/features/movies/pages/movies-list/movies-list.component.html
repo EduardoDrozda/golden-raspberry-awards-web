@@ -4,9 +4,13 @@
     <div class="card__content-container">
       <app-table
         [columns]="columns"
-        [data]="movies?.content"
+        [data]="movies"
         [isLoading]="loadingService.isLoading(moviesListLoading)"
-        (fieldSearchEmitter)="fetchMovies($event)"
+        [page]="moviesPagination.page!"
+        [totalPages]="moviesPagination!.totalPages!"
+        [showPagination]="true"
+        (fieldSearchEmitter)="fetchMoviesByFilter($event)"
+        (pageChangeEmitter)="fetchMoviesWithPage($event)"
       />
     </div>
   </div>

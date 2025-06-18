@@ -41,3 +41,36 @@
     }
   }
 }
+
+.table__pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  background-color: var(--sys-color-gray-100);
+
+  button {
+    background-color: transparent;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: var(--sys-color-gray-800);
+    cursor: pointer;
+    font-weight: 500;
+
+    &:hover:not(:disabled) {
+      background-color: var(--sys-color-gray-200);
+    }
+
+    &.active {
+      background-color: var(--sys-color-blue-500);
+      color: var(--sys-color-white);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+}

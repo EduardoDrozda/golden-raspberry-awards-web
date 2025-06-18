@@ -33,32 +33,78 @@ export class MoviesListComponent implements OnInit {
   ]
 
   moviesListLoading = 'moviesListLoading';
-  movies: PaginationModel<MovieModel> | null = null;
+  movies: MovieModel[] = [];
 
   moviesPagination: MovieSearchParams = {
     page: 0,
-    size: 15
+    size: 15,
   }
 
   ngOnInit() {
-    this.fetchMovies();
+    this.fetchMovies(this.moviesPagination);
   }
 
-  fetchMovies(params?: TableField<MovieModel>) {
+  fetchMovies(params: MovieSearchParams) {
     this.loadingService.start(this.moviesListLoading);
 
-    if (params) {
-      this.moviesPagination = {
-        ...this.moviesPagination,
-        [params.key]: params.value
-      };
-    }
+    // let paginationParams: MovieSearchParams = {
+    //   page: this.moviesPagination.page! - 1,
+    //   size: this.moviesPagination.size,
+    // }
+
+    // this.moviesPagination = {
+    //   ...this.moviesPagination,
+    //   page: paginationParams.page! + 1
+    // }
+
+    // if (params) {
+    //   paginationParams = {
+    //     ...paginationParams,
+    //     [params.key]: params.value
+    //   }
+    // }
 
     this.movieService
-      .getMoviesByParams(this.moviesPagination)
+      .getMoviesByParams(params)
       .pipe(finalize(() => this.loadingService.stop(this.moviesListLoading)))
       .subscribe({
-        next: (response) => (this.movies = response),
+        next: (response) => {
+          this.movies = response.content;
+          this.moviesPagination = {
+            ...this.moviesPagination,
+            totalPages: response.totalPages,
+            page: response.number + 1,
+          }
+        },
       });
+  }
+
+  fetchMoviesByFilter(field: TableField<MovieModel>[]) {
+    const filterParams = field
+      .reduce((acc, item) => {
+      acc[item.key as string] = item.value;
+      return acc;
+    }, {} as Record<string, any>);
+
+    this.moviesPagination = {
+      ...this.moviesPagination,
+      ...filterParams,
+    };
+
+    let paginationParams: MovieSearchParams = {
+      ...this.moviesPagination,
+      page: 0,
+    }
+
+    this.fetchMovies(paginationParams);
+  }
+
+  fetchMoviesWithPage(page: number) {
+    this.moviesPagination = {
+      ...this.moviesPagination,
+      page: page - 1,
+    };
+
+    this.fetchMovies(this.moviesPagination);
   }
 }

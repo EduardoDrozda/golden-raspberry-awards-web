@@ -4,22 +4,26 @@
       @for (column of columns(); track $index) {
         <th>
           {{ column.label }}
-          @if (column.filterable) {
-            <input
-              class="basic__input table__field"
-              type="text"
-              placeholder="Filter by {{ column.label }}"
-              (change)="onFilter({ key: column.key, value: $event })"
-            />
-          } @else if(column.selectable) {
-            <select
-              class="basic__select table__field"
-              (change)="onFilter({ key: column.key, value: $event })"
-              >
-              @for (option of column.options; track $index) {
-                <option [value]="option.value">{{ option.label }}</option>
+          @if (filterableColumns.length) {
+            <form [formGroup]="formGroup">
+              @if (column.filterable) {
+                <input
+                  class="basic__input table__field"
+                  type="text"
+                  placeholder="Filter by {{ column.label }}"
+                  [formControlName]="column.key"
+                />
+              } @else if(column.selectable) {
+                <select
+                  class="basic__select table__field"
+                  [formControlName]="column.key"
+                >
+                  @for (option of column.options; track $index) {
+                    <option [value]="option.value">{{ option.label }}</option>
+                  }
+                </select>
               }
-            </select>
+            </form>
           }
         </th>
       }
@@ -32,18 +36,39 @@
           <div class="loader"></div>
         </td>
       </tr>
-    } @else if (data()?.length) {
-      @for (row of data(); track $index) {
-        <tr>
-          @for (column of columns(); track $index) {
-          <td>{{ row[column.key] | format }}</td>
-          }
-        </tr>
-      }
-  } @else {
-      <tr class="table__no-data">
-        <td [attr.colspan]="columns().length">No data available.</td>
+    } @else if (data()?.length) { @for (row of data(); track $index) {
+      <tr>
+        @for (column of columns(); track $index) {
+        <td>{{ row[column.key] | format }}</td>
+        }
       </tr>
+    } } @else {
+    <tr class="table__no-data">
+      <td [attr.colspan]="columns().length">No data available.</td>
+    </tr>
     }
   </tbody>
 </table>
+@if(showPagination()) {
+  <div class="table__pagination">
+    <button (click)="goTo(1)" [disabled]="page() === 1">
+      <i class="fa-solid fa-backward"></i>
+    </button>
+    <button (click)="goTo(page() - 1)" [disabled]="page() === 1">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    @for (pg of pages; track $index) {
+      <button (click)="goTo(pg)" [class.active]="pg === page()">
+        {{ pg }}
+      </button>
+    }
+
+    <button (click)="goTo(page() + 1)" [disabled]="page() === totalPages()">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+    <button (click)="goTo(totalPages())" [disabled]="page() === totalPages()">
+      <i class="fa-solid fa-forward"></i>
+    </button>
+  </div>
+}

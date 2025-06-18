@@ -1,5 +1,5 @@
 export type TableColumn<T> = {
-  key: keyof T;
+  key: keyof T & string;
   label: string;
   filterable?: boolean;
   selectable?: boolean;
