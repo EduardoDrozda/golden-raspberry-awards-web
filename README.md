@@ -1,6 +1,6 @@
 # 🎬 Golden Raspberry Awards Web
 
-Este projeto é a aplicação **frontend Angular** para visualização e interação com a [API Golden Raspberry Awards](https://github.com/EduardoDrozda/golden-raspberry-awards), permitindo aos usuários explorar informações sobre produtores premiados com o **Golden Raspberry Award**.
+Este projeto é a aplicação **frontend Angular** para visualização e interação, permitindo aos usuários explorar informações sobre produtores premiados com o **Golden Raspberry Award**.
 
 ---
 
