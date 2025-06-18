@@ -50,6 +50,7 @@ src/
 ├── app.component.ts           # Componente raiz
 ├── app.routes.ts              # Rotas da aplicação
 └── ...
+```
 
 ### ⚙️ Tecnologias Utilizadas
 
