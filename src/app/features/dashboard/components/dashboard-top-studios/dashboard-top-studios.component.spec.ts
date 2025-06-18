@@ -24,15 +24,15 @@ describe('DashboardTopStudiosComponent', () => {
   });
 
   it('should create', () => {
-     fixture.componentRef.setInput('topStudios', mockTopStudios);
-     fixture.componentRef.setInput('isLoading', false);
+    fixture.componentRef.setInput('topStudios', mockTopStudios);
+    fixture.componentRef.setInput('isLoading', false);
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('should render top studios data', () => {
-     fixture.componentRef.setInput('topStudios', mockTopStudios);
-     fixture.componentRef.setInput('isLoading', false);
+    fixture.componentRef.setInput('topStudios', mockTopStudios);
+    fixture.componentRef.setInput('isLoading', false);
     fixture.detectChanges();
 
     const text = fixture.nativeElement.textContent;
@@ -43,8 +43,8 @@ describe('DashboardTopStudiosComponent', () => {
   });
 
   it('should show loader when isLoading is true', () => {
-     fixture.componentRef.setInput('topStudios', mockTopStudios);
-     fixture.componentRef.setInput('isLoading', true);
+    fixture.componentRef.setInput('topStudios', mockTopStudios);
+    fixture.componentRef.setInput('isLoading', true);
     fixture.detectChanges();
 
     const loader = fixture.debugElement.query(By.css('.loader'));
