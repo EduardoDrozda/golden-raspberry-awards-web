@@ -80,7 +80,7 @@ npm install
 ### 3. Execute a aplicação
 
 ```bash
-ng serve ou npm run start
+npm run start
 ```
 
 ### 3. Rode o projeto localmente
@@ -94,14 +94,14 @@ ng serve ou npm run start
 Para rodar os testes unitários:
 
 ```bash
-ng test ou npm run test
+npm run test
 ```
 
 ## 🧪 Testes com Cobertura
 Para rodar os testes com cobertura de código:
 
 ```bash
-ng test --code-coverage ou npm run test:coverage
+npm run test:coverage
 ```
 
 A cobertura será gerada na pasta `coverage/` e você pode abrir o arquivo `index.html` no navegador para visualizar os resultados.
