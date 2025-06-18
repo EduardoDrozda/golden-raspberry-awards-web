@@ -74,6 +74,7 @@ cd golden-raspberry-awards-web
 ### 2. Instale as dependências
 
 ```bash
+npm install -g @angular/cli
 npm install
 ```
 ### 3. Execute a aplicação
