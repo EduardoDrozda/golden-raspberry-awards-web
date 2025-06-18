@@ -1,59 +1,105 @@
-# GoldenRaspberryAwardsWeb
+# 🎬 Golden Raspberry Awards Web
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+Este projeto é a aplicação **frontend Angular** para visualização e interação com a [API Golden Raspberry Awards](https://github.com/EduardoDrozda/golden-raspberry-awards), permitindo aos usuários explorar informações sobre produtores premiados com o **Golden Raspberry Award**.
 
-## Development server
+---
 
-To start a local development server, run:
+## 📑 Tabela de Conteúdos
 
-```bash
-ng serve
-```
+- [🚀 Objetivo](#-objetivo)
+- [🏗️ Arquitetura e Tecnologias](#-arquitetura-e-tecnologias)
+  - [📁 Estrutura de Diretórios](#-estrutura-de-diretórios)
+  - [⚙️ Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [📦 Instalação e Execução](#-instalação-e-execução)
+- [🧪 Testes](#-testes)
+- [🧪 Testes com Cobertura](#-testes-com-cobertura)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Objetivo
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Fornecer uma interface amigável, responsiva e acessível para que usuários possam visualizar os produtores de filmes que:
 
-```bash
-ng generate component component-name
-```
+- Dashboard com **vários indicativos a respeito do evento**.
+- Lista de filmes que foram indicados por ano **com filtros por ano e se ganhou**.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🏗️ Arquitetura e Tecnologias
 
-## Building
+A aplicação utiliza **Angular 19** com **SCSS modularizado**, seguindo princípios de **componentização** e organização por domínio funcional.
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 📁 Estrutura de Diretórios
 
 ```bash
-ng test
-```
+src/
+├── app/
+│   ├── core/                    # Serviços e funcionalidades de núcleo da aplicação
+│   ├── features/                # Módulos funcionais
+│   │   ├── dashboard/           # Página principal com estatísticas
+│   │   └── movies/              # Exibição de filmes e premiações
+│   ├── shared/                 # Componentes e pipes reutilizáveis
+│   │   ├── components/
+│   │   └── pipes/
+│   └── styles/                 # Estilos globais e variáveis SCSS
+│       ├── _variables.scss
+│       ├── _button.scss
+│       ├── _card.scss
+│       └── ...
+├── environments/              # Configurações de ambiente
+├── app.component.ts           # Componente raiz
+├── app.routes.ts              # Rotas da aplicação
+└── ...
 
-## Running end-to-end tests
+### ⚙️ Tecnologias Utilizadas
 
-For end-to-end (e2e) testing, run:
+- **Angular 19** – Framework principal
+- **SCSS Modularizado** – Estilização com separação por componente e temática
+- **RxJS** – Programação reativa
+- **Font Awesome** – Ícones visuais
+- **Karma + Jasmine** – Testes unitários
+- **Code Coverage** – Cobertura de testes
+
+---
+
+## 📦 Instalação e Execução
+
+### 1. Clone o repositório
 
 ```bash
-ng e2e
+git clone https://github.com/EduardoDrozda/golden-raspberry-awards-web
+cd golden-raspberry-awards-web
+```
+### 2. Instale as dependências
+
+```bash
+npm install
+```
+### 3. Execute a aplicação
+
+```bash
+ng serve ou npm run start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 3. Rode o projeto localmente
 
-## Additional Resources
+> A aplicação estará disponível em: [http://localhost:4200](http://localhost:4200)
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## 🧪 Testes
+
+Para rodar os testes unitários:
+
+```bash
+ng test ou npm run test
+```
+
+## 🧪 Testes com Cobertura
+Para rodar os testes com cobertura de código:
+
+```bash
+ng test --code-coverage ou npm run test:coverage
+```
+
+A cobertura será gerada na pasta `coverage/` e você pode abrir o arquivo `index.html` no navegador para visualizar os resultados.
