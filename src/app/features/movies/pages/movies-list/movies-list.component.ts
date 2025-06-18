@@ -47,23 +47,6 @@ export class MoviesListComponent implements OnInit {
   fetchMovies(params: MovieSearchParams) {
     this.loadingService.start(this.moviesListLoading);
 
-    // let paginationParams: MovieSearchParams = {
-    //   page: this.moviesPagination.page! - 1,
-    //   size: this.moviesPagination.size,
-    // }
-
-    // this.moviesPagination = {
-    //   ...this.moviesPagination,
-    //   page: paginationParams.page! + 1
-    // }
-
-    // if (params) {
-    //   paginationParams = {
-    //     ...paginationParams,
-    //     [params.key]: params.value
-    //   }
-    // }
-
     this.movieService
       .getMoviesByParams(params)
       .pipe(finalize(() => this.loadingService.stop(this.moviesListLoading)))
